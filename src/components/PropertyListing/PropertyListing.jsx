@@ -1,31 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { fetch } from 'cross-fetch';
+import React from 'react';
 import PropertyCard from '../PropertyCard';
 import './PropertyListing.scss';
+import useFetchProperties from '../../hooks/useFetchProperties';
 
 const PropertyListing = () => {
-    const [properties, setProperties] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await fetch('http://localhost:3000/api/properties');
-
-            if (!res.ok) {
-                throw new Error('Failed to fetch data', { status: res.status, message: res.message });
-            }
-
-            const json = await res.json();
-
-            return json;
-        };
-
-        fetchData().then((data) => setProperties(data));
-    }, []);
+    const [properties] = useFetchProperties();
 
     return (
         <ul className="PropertyListing">
-            {properties.map((property, index) => (
-                <li key={index}>
+            {properties.map((property) => (
+                <li key={property.id}>
                     <PropertyCard {...property} />
                 </li>
             ))}
