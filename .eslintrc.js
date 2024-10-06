@@ -5,7 +5,12 @@ module.exports = {
         node: true,
         jest: true,
     },
-    extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended'],
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:testing-library/react'
+    ],
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
@@ -13,7 +18,7 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react'],
+    plugins: ['react', 'react-hooks', 'testing-library'],
     rules: {},
     settings: {
         react: {
